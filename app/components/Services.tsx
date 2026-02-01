@@ -9,7 +9,7 @@ const services = [
         id: 1,
         title: 'Terrace Awnings',
         description: 'Premium retractable awnings that transform your terrace into an elegant outdoor living space.',
-        image: 'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        image: 'https://res.cloudinary.com/dzlvmbajq/image/upload/v1769971024/677e69ae4d15448bfdb2e05e_65e68b5968e51e76cfe668f5_window_20awning_20ideas_sqlyn5.webp',
     },
     {
         id: 2,

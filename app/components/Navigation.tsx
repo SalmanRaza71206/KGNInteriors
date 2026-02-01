@@ -52,21 +52,24 @@ export default function Navigation() {
                     <div className="flex items-center gap-6 md:gap-8">
                         {/* Brand */}
                         <Link href="/" className="flex items-center gap-3 mr-4">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-accent text-sm font-display font-semibold text-background shadow-sm">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-accent text-sm font-display font-semibold text-white shadow-sm">
                                 K
                             </div>
                             <div className="hidden flex-col leading-tight sm:flex">
-                                <span className="text-sm font-display font-semibold tracking-tight text-foreground">
+                                <span className={`text-sm font-display font-semibold tracking-tight transition-colors duration-300 ${isScrolled ? 'text-foreground' : 'text-white'}`}>
                                     KGN Awnings & Blinds
                                 </span>
-                                <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-foreground-muted">
+                                <span className={`text-[10px] font-medium uppercase tracking-[0.18em] transition-colors duration-300 ${isScrolled ? 'text-foreground-muted' : 'text-white/70'}`}>
                                     Shades • Tensile • Blinds
                                 </span>
                             </div>
                         </Link>
 
                         {/* Desktop Navigation */}
-                        <nav className="hidden items-center gap-4 lg:flex lg:gap-6 lg:ml-2">
+                    </div>
+
+                    <div>
+                        <nav className="hidden items-center gap-4 lg:flex lg:gap-6 lg:ml-2 ">
                             {navLinks.map((link, i) => (
                                 <motion.button
                                     key={link.name}
@@ -74,7 +77,7 @@ export default function Navigation() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
                                     onClick={() => scrollToSection(link.href)}
-                                    className="relative py-2 px-1 text-xs font-medium uppercase tracking-[0.16em] text-foreground-muted transition-colors duration-300 hover:text-foreground"
+                                    className={`relative py-2 px-1 tracking-wider uppercase group text-sm font-semibold transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-foreground/85 hover:text-foreground' : 'text-white/90 hover:text-white'}`}
                                 >
                                     {link.name}
                                     <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
@@ -92,12 +95,20 @@ export default function Navigation() {
                     >
                         <a
                             href="tel:+919876543210"
-                            className="inline-flex items-center gap-2 py-2 pl-2 pr-3 text-xs font-medium uppercase tracking-[0.16em] text-foreground-muted hover:text-foreground"
+                            className={`inline-flex items-center gap-2 py-2 pl-2 pr-3 text-xs font-medium uppercase tracking-[0.16em] transition-colors duration-300 ${isScrolled ? 'text-foreground-muted hover:text-foreground' : 'text-white/70 hover:text-white'}`}
                         >
-                            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-background-secondary text-xs">
+                          <motion.span
+                                whileHover={{
+                                    x: [0, -2, 2, -2, 2, 0],
+                                }}
+                                transition={{
+                                    duration: 0.3,
+                                }}
+                                className={`inline-flex h-7 w-7 items-center justify-center rounded-full text-xs transition-colors duration-300 ${isScrolled ? 'bg-background-secondary' : 'bg-white/10'}`}
+                                >
                                 📞
-                            </span>
-                            <span>+91 98765 43210</span>
+                                </motion.span>
+                            <span className={`transition-colors duration-300 ${isScrolled ? 'text-foreground' : 'text-white'}`}>+91 98765 43210</span>
                         </a>
                         <button
                             onClick={() => scrollToSection('#contact')}
@@ -113,7 +124,7 @@ export default function Navigation() {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="relative flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/70 lg:hidden ml-4"
+                        className={`relative flex h-10 w-10 items-center justify-center rounded-full border lg:hidden ml-4 transition-colors duration-300 ${isScrolled ? 'border-border bg-background/70' : 'border-white/20 bg-white/10'}`}
                         aria-label="Toggle menu"
                     >
                         <div className="flex flex-col gap-1.5">
@@ -122,21 +133,21 @@ export default function Navigation() {
                                     rotate: isMobileMenuOpen ? 45 : 0,
                                     y: isMobileMenuOpen ? 6 : 0,
                                 }}
-                                className="block h-0.5 w-5 origin-center bg-foreground"
+                                className={`block h-0.5 w-5 origin-center transition-colors duration-300 ${isScrolled ? 'bg-foreground' : 'bg-white'}`}
                             />
                             <motion.span
                                 animate={{
                                     opacity: isMobileMenuOpen ? 0 : 1,
                                     x: isMobileMenuOpen ? 20 : 0,
                                 }}
-                                className="block h-0.5 w-5 bg-foreground"
+                                className={`block h-0.5 w-5 transition-colors duration-300 ${isScrolled ? 'bg-foreground' : 'bg-white'}`}
                             />
                             <motion.span
                                 animate={{
                                     rotate: isMobileMenuOpen ? -45 : 0,
                                     y: isMobileMenuOpen ? -6 : 0,
                                 }}
-                                className="block h-0.5 w-5 origin-center bg-foreground"
+                                className={`block h-0.5 w-5 origin-center transition-colors duration-300 ${isScrolled ? 'bg-foreground' : 'bg-white'}`}
                             />
                         </div>
                     </motion.button>

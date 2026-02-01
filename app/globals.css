@@ -167,7 +167,6 @@ h4 {
 
 p {
   font-size: clamp(1rem, 1.5vw, 1.125rem);
-  color: var(--foreground-muted);
 }
 
 .text-accent {
