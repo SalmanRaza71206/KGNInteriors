@@ -1,0 +1,642 @@
+@import "tailwindcss";
+
+/* ============================================
+   KGN INTERIORS - LUXURY DESIGN SYSTEM
+   ============================================ */
+
+/* ============================================
+   CSS CUSTOM PROPERTIES
+   ============================================ */
+:root {
+  /* Colors - Light Mode (Default) */
+  --background: #f9fafb;
+  --background-secondary: #f3f4f6;
+  /* Light warm-grey */
+  --foreground: #111827;
+  /* Deep charcoal */
+  --foreground-muted: #6b7280;
+  /* Muted grey */
+  --accent: #d97745;
+  /* Awning terracotta */
+  --accent-hover: #b45328;
+  /* Darker terracotta */
+  --border: rgba(15, 23, 42, 0.1);
+  --glass: rgba(255, 255, 255, 0.9);
+
+  /* Typography */
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --section-padding: clamp(3rem, 8vw, 6rem);
+  --container-max: 1280px;
+
+  /* Animation */
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+  --duration-fast: 0.3s;
+  --duration-medium: 0.6s;
+  --duration-slow: 1s;
+}
+
+/* Dark Mode */
+.dark,
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --background-secondary: #141414;
+  --foreground: #ededed;
+  --foreground-muted: #a3a3a3;
+  --accent: #D4B87A;
+  --accent-hover: #E5C98B;
+  --border: rgba(255, 255, 255, 0.08);
+  --glass: rgba(10, 10, 10, 0.8);
+}
+
+/* Dark Mode - Optional/User System Preference */
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="dark"] {
+    --background: #0f172a;
+    --background-secondary: #1e293b;
+    --foreground: #f1f5f9;
+    --foreground-muted: #94a3b8;
+    --accent: #3b82f6;
+    --accent-hover: #60a5fa;
+    --border: rgba(255, 255, 255, 0.1);
+    --glass: rgba(15, 23, 42, 0.9);
+  }
+}
+
+/* ============================================
+   TAILWIND THEME CONFIGURATION
+   ============================================ */
+@theme inline {
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-border: var(--border);
+  --color-glass: var(--glass);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+p {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  color: var(--foreground-muted);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+.section {
+  padding: var(--section-padding) 0;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-smooth);
+  position: relative;
+  overflow: hidden;
+  outline: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0a0a0a;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.btn:focus-visible {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--accent);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Button Magnetic Effect */
+.btn-magnetic {
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+/* ============================================
+   GLASS MORPHISM
+   ============================================ */
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+/* Hero background image */
+.hero-bg {
+  background-image: url('/hero-awning.jpg');
+}
+
+/* ============================================
+   ANIMATIONS & KEYFRAMES
+   ============================================ */
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide In From Left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide In From Right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Reveal Mask */
+@keyframes revealMask {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Floating */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(201, 169, 98, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(201, 169, 98, 0.6);
+  }
+}
+
+/* Line Draw */
+@keyframes drawLine {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Scroll Indicator */
+@keyframes scrollBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(10px);
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s var(--ease-smooth) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s var(--ease-out-expo) forwards;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s var(--ease-out-expo) forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s var(--ease-out-expo) forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Stagger Delays */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+.delay-700 {
+  animation-delay: 0.7s;
+}
+
+.delay-800 {
+  animation-delay: 0.8s;
+}
+
+/* Initially Hidden (for JS animations) */
+.will-animate {
+  opacity: 0;
+}
+
+/* ============================================
+   HOVER EFFECTS
+   ============================================ */
+.hover-lift {
+  transition: transform var(--duration-fast) var(--ease-smooth),
+    box-shadow var(--duration-fast) var(--ease-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hover-scale {
+  transition: transform var(--duration-fast) var(--ease-smooth);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(201, 169, 98, 0.4);
+}
+
+/* Service card image helper using data attribute */
+.service-card-image > div {
+  background-image: attr(data-image url);
+}
+
+/* Project card images */
+.project-card-image {
+  background-image: attr(data-image url);
+}
+
+/* Image Reveal Effect */
+.img-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-reveal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform 0.8s var(--ease-in-out-expo);
+}
+
+.img-reveal.revealed::after {
+  transform: scaleX(0);
+}
+
+.img-reveal img {
+  transform: scale(1.2);
+  transition: transform 1.2s var(--ease-out-expo);
+}
+
+.img-reveal.revealed img {
+  transform: scale(1);
+}
+
+/* ============================================
+   DECORATIVE ELEMENTS
+   ============================================ */
+.accent-line {
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+  display: block;
+}
+
+.accent-line-animated {
+  transform-origin: left;
+  animation: drawLine 1s var(--ease-out-expo) forwards;
+}
+
+.section-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-label::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ============================================
+   SCROLL INDICATOR
+   ============================================ */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--foreground-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scroll-indicator .mouse {
+  width: 24px;
+  height: 40px;
+  border: 2px solid var(--foreground-muted);
+  border-radius: 12px;
+  position: relative;
+}
+
+.scroll-indicator .mouse::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* ============================================
+   SELECTION STYLES
+   ============================================ */
+::selection {
+  background: var(--accent);
+  color: #0a0a0a;
+}
+
+::-moz-selection {
+  background: var(--accent);
+  color: #0a0a0a;
+}
+
+/* ============================================
+   SCROLLBAR STYLES
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .section {
+    padding: clamp(3rem, 8vw, 5rem) 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
