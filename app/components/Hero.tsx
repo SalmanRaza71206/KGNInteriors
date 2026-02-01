@@ -1,11 +1,27 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 
+const HERO_IMAGES = [
+    '/hero-awning.jpg',
+    '/drop-awning-Bh4vaVvq.jpg',
+    '/34144013ab7d113c4e037a0484e63501.jpg',
+    '/7e31007bc736071394c701f23d3c7c26.jpg',
+    '/service-pergola.webp',
+];
+
 export default function Hero() {
     const heroRef = useRef<HTMLDivElement>(null);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % HERO_IMAGES.length);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -44,29 +60,45 @@ export default function Hero() {
             ref={heroRef}
             className="relative flex min-h-screen items-center justify-center overflow-hidden pt-28 md:pt-32"
         >
-            {/* Background Image */}
-            <div className="absolute inset-0 z-0">
-                <div
-                    className="hero-bg absolute inset-0 bg-cover bg-center"
-                />
-                <div className="absolute inset-0 bg-linear-to-r from-background/95 via-background/80 to-background/20" />
-            </div>
+           {/* Background Carousel */}
+<div className="absolute inset-0 z-0">
+    {HERO_IMAGES.map((src, i) => (
+        <motion.div
+            key={src}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${src})` }}
+            initial={false}
+            animate={{
+                opacity: i === currentSlide ? 1 : 0,
+            }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
+        />
+    ))}
+</div>
+
+{/* ✅ PERMANENT WHITE OVERLAY */}
+<div className="absolute inset-0 z-[-2] bg-white/40 pointer-events-none" />
+
+{/* ✅ OPTIONAL GRADIENT FOR DEPTH */}
+<div className="absolute inset-0 z-[-0.5] bg-linear-to-r from-background/95 via-background/80 to-background/30 pointer-events-none" />
+
 
             {/* Main Content */}
-            <div className="container relative z-10">
-                <div className="max-w-3xl space-y-8">
+            <div className="relative flex w-full flex-col px-6 mt-[-10vh] md:px-10 lg:px-14">
+
+                <div className="flex max-w-4xl flex-col gap-2">
                     {/* Overline */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="section-label mb-8"
+                        className="section-label"
                     >
                         <span>Professional Shading Solutions</span>
                     </motion.div>
 
                     {/* Main Headline */}
-                    <div className="overflow-hidden">
+                    <div className="overflow-hidden mt-[-30px]">
                         <motion.h1
                             initial={{ y: 100, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
@@ -93,7 +125,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.7 }}
-                        className="mb-8 max-w-2xl text-base md:text-lg text-foreground-muted"
+                        className=" max-w-4xl text-base md:text-lg text-foreground-muted"
                     >
                         Transform your outdoor spaces with our high-quality retractable awnings,
                         tensile car parking shades, and modern blinds. Installed by experts
@@ -107,7 +139,7 @@ export default function Hero() {
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay: 0.9 }}
-    className="flex flex-col items-start sm:flex-row sm:items-center"
+    className="flex flex-col items-start mt-4 sm:flex-row sm:items-center"
 >
     <button
         onClick={() => scrollToSection('#contact')}
@@ -164,7 +196,7 @@ export default function Hero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.6, delay: 1.2 }}
-                    className="mt-16 grid max-w-3xl grid-cols-2 gap-6 md:mt-20 md:grid-cols-4 md:gap-8"
+                    className="mt-8 flex max-w-3xl flex-wrap gap-6 md:mt-10 md:gap-8"
                 >
                     {[
                         { value: '15+', label: 'Years Experience' },
@@ -172,7 +204,7 @@ export default function Hero() {
                         { value: '98%', label: 'Client Satisfaction' },
                         { value: '50+', label: 'Expert Craftsmen' },
                     ].map((stat, i) => (
-                        <div key={i} className="hero-stat flex flex-col">
+                        <div key={i} className="hero-stat flex flex-col basis-[calc(50%-0.75rem)] md:basis-[calc(25%-1.5rem)]">
                             <div className="text-3xl md:text-4xl font-display font-bold text-accent mb-1">
                                 {stat.value}
                             </div>

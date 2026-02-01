@@ -1,3 +1,13 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
 @import "tailwindcss";
 
 /* ============================================
@@ -86,12 +96,7 @@
 /* ============================================
    BASE STYLES
    ============================================ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+  
 html {
   scroll-behavior: smooth;
 }
@@ -241,10 +246,10 @@ p {
    GLASS MORPHISM
    ============================================ */
 .glass {
-  background: var(--glass);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
+  /* background: var(--glass); */
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  /* border: 1px solid var(--border); */
 }
 
 /* Hero background image */
@@ -555,8 +560,8 @@ p {
    ============================================ */
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
-  left: 50%;
+  bottom: 1rem;
+  left: 55%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
