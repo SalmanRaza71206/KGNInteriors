@@ -9,37 +9,37 @@ const services = [
         id: 1,
         title: 'Terrace Awnings',
         description: 'Premium retractable awnings that transform your terrace into an elegant outdoor living space.',
-        image: 'https://res.cloudinary.com/dzlvmbajq/image/upload/v1769971024/677e69ae4d15448bfdb2e05e_65e68b5968e51e76cfe668f5_window_20awning_20ideas_sqlyn5.webp',
+        image: 'https://res.cloudinary.com/dmtf3cng1/image/upload/v1770485277/7855f3a96250b8d2c2887b5c8f1b1574_lkacll.jpg',
     },
     {
         id: 2,
         title: 'Window Awnings',
         description: 'Stylish window coverings that provide shade, reduce energy costs, and enhance your facade.',
-        image: 'https://images.pexels.com/photos/374815/pexels-photo-374815.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        image: 'https://res.cloudinary.com/dmtf3cng1/image/upload/v1770488361/ba21000f7d2f7cbdf09db5eb8c3ea6c2_gc8fwc.jpg',
     },
     {
         id: 3,
         title: 'Roller & Zebra Blinds',
         description: 'Modern blinds with precise light control and contemporary aesthetics for any interior.',
-        image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        image: 'https://i.pinimg.com/736x/da/ce/3f/dace3fcae7c21f97608bc51ba6130a24.jpg',
     },
     {
         id: 4,
         title: 'Car Parking Shades',
         description: 'Durable and elegant car parking solutions including tensile structures.',
-        image: 'https://images.pexels.com/photos/8961000/pexels-photo-8961000.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        image: 'https://res.cloudinary.com/dmtf3cng1/image/upload/v1770494173/6f9441f9738dc8ae1b1cffebf318a75f_vfst7f.jpg',
     },
     {
         id: 5,
         title: 'Tensile Structures',
         description: 'Custom designed tensile membrane structures for large shading requirements.',
-        image: 'https://images.pexels.com/photos/209065/pexels-photo-209065.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        image: 'https://res.cloudinary.com/dmtf3cng1/image/upload/v1770494748/8a089ade1a77a395891ad2679467ce08_dazjuo.jpg',
     },
     {
         id: 6,
         title: 'Drop Awnings',
         description: 'Vertical drop awnings perfect for balconies, patios, and commercial spaces.',
-        image: 'https://images.pexels.com/photos/602399/pexels-photo-602399.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        image: 'https://res.cloudinary.com/dmtf3cng1/image/upload/v1770495189/8870df577d397b311c2f7ae42fcb7def_ipibyv.jpg',
     },
 ];
 
@@ -81,8 +81,8 @@ export default function Services() {
                             {/* Image */}
                             <div className="service-card-image overflow-hidden bg-gray-100">
                                 <div
-                                    className="h-44 w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 md:h-48"
-                                    data-image={service.image}
+                                    className="h-44  bg-cover bg-center transition-transform duration-700 group-hover:scale-110 md:h-48"
+                                    style={{ backgroundImage: `url(${service.image})` }}
                                 />
                             </div>
 
