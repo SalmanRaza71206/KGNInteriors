@@ -118,7 +118,7 @@ export default function Contact() {
                             ].map((item, i) => (
                                 <RevealOnScroll key={i} delay={0.3 + i * 0.1}>
                                     <div className="flex items-start gap-4 group">
-                                        <div className="w-12 h-12 flex items-center justify-center bg-accent/10 text-accent group-hover:bg-accent group-hover:text-background transition-all duration-300">
+                                        <div className="w-12 h-12 flex items-center justify-center bg-accent/10 text-accent group-hover:text-background transition-all duration-300">
                                             {item.icon}
                                         </div>
                                         <div>

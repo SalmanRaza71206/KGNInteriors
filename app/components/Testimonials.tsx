@@ -104,7 +104,7 @@ export default function Testimonials() {
 
                 {/* Testimonial Slider */}
                 <div className="max-w-4xl mx-auto">
-                    <div className="relative min-h-[300px]">
+                    <div className="relative overflow-hidden">
                         <AnimatePresence mode="wait" custom={direction}>
                             <motion.div
                                 key={currentIndex}
@@ -114,9 +114,9 @@ export default function Testimonials() {
                                 animate="center"
                                 exit="exit"
                                 transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-                                className="absolute inset-0"
+                                className="w-full"
                             >
-                                <div className="bg-background-secondary p-8 md:p-12 text-center">
+                                <div className="bg-background-secondary p-8 md:p-12 text-center rounded-lg">
                                     {/* Quote Icon */}
                                     <div className="w-12 h-12 mx-auto mb-6 flex items-center justify-center text-accent opacity-50">
                                         <svg className="w-full h-full" fill="currentColor" viewBox="0 0 24 24">

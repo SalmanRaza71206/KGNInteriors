@@ -101,7 +101,7 @@ export default function Services() {
                                 </p>
 
                                 {/* Learn More Link */}
-                                <button className="flex items-center gap-2 text-accent text-sm font-medium">
+                                <button className="flex items-center gap-2 text-accent text-sm font-medium cursor-pointer">
                                     <span>Enquire Now</span>
                                     <svg
                                         className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"

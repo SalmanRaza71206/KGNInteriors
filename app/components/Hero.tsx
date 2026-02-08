@@ -78,15 +78,15 @@ export default function Hero() {
             </div>
 
             {/* Premium Gradient Overlay */}
-            <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#1a1a1a]/95 via-[#1a1a1a]/75 to-transparent pointer-events-none" />
-            <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#1a1a1a]/60 via-transparent to-[#1a1a1a]/30 pointer-events-none" />
+            <div className="absolute inset-0  z-1 bg-linear-to-t from-[#1a1a1a]/95 via-[#1a1a1a]/75 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 z-1 bg-linear-to-t from-[#1a1a1a]/60 via-transparent to-[#1a1a1a]/30 pointer-events-none" />
             
             {/* Accent Gradient Overlay */}
-            <div className="absolute inset-0 z-[1] bg-gradient-to-br from-[#d97745]/10 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 z-1 bg-linear-to-t from-[#d97745]/10 via-transparent to-transparent pointer-events-none" />
 
 
             {/* Main Content */}
-            <div className="relative z-[2] flex w-full flex-col px-8 md:px-16 lg:px-24 py-20">
+            <div className="relative z-2 flex w-full flex-col px-8 md:px-16 lg:px-24 py-20">
 
                 <div className="flex max-w-4xl flex-col gap-6">
                     {/* Overline Badge */}
@@ -118,7 +118,7 @@ export default function Hero() {
                                 initial={{ y: 100, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-                                className=" font-bold bg-gradient-to-r from-[#d97745] via-[#e89565] to-[#d97745] bg-clip-text text-transparent"
+                                className=" font-bold bg-linear-to-r from-[#d97745] via-[#e89565] to-[#d97745] bg-clip-text text-transparent"
                             >
                                 & Tensile Structures
                             </motion.h1>
@@ -149,7 +149,7 @@ export default function Hero() {
                     >
                         <button
                             onClick={() => scrollToSection('#contact')}
-                            className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#d97745] to-[#b45328] text-white font-semibold rounded-lg shadow-lg shadow-[#d97745]/25 hover:shadow-xl hover:shadow-[#d97745]/30 hover:scale-[1.02] transition-all duration-300"
+                            className="group inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-[#d97745] to-[#b45328] text-white font-semibold rounded-lg shadow-lg shadow-[#d97745]/25 hover:shadow-xl hover:shadow-[#d97745]/30 hover:scale-[1.02] transition-all duration-300"
                         >
                             <span>Get a Free Quote</span>
                             <svg
@@ -234,7 +234,7 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5, duration: 0.6 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[3] flex flex-col items-center gap-2"
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-3 flex flex-col items-center gap-2"
             >
                 <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
                     <motion.div
@@ -247,18 +247,18 @@ export default function Hero() {
             </motion.div>
 
             {/* Decorative Accent Line */}
-            <div className="absolute bottom-0 left-12 h-40 z-[3] flex items-end pointer-events-none">
+            <div className="absolute bottom-0 left-12 h-40 z-3 flex items-end pointer-events-none">
                 <div
-                    className="hero-line w-px h-full bg-gradient-to-t from-[#d97745] to-transparent"
+                    className="hero-line w-px h-full bg-linear-to-t from-[#d97745] to-transparent"
                     style={{ transformOrigin: 'bottom' }}
                 />
             </div>
 
             {/* Side Accent */}
-            <div className="absolute top-1/2 -translate-y-1/2 right-12 z-[3] hidden lg:flex flex-col items-center gap-4 pointer-events-none">
-                <div className="w-px h-16 bg-gradient-to-b from-transparent to-white/20" />
+            <div className="absolute top-1/2 -translate-y-1/2 right-12 z-3 hidden lg:flex flex-col items-center gap-4 pointer-events-none">
+                <div className="w-px h-16 bg-linear-to-b from-transparent to-white/20" />
                 <span className="text-xs text-white/40 tracking-widest uppercase [writing-mode:vertical-lr]">KGN Interiors</span>
-                <div className="w-px h-16 bg-gradient-to-b from-white/20 to-transparent" />
+                <div className="w-px h-16 bg-linear-to-b from-white/20 to-transparent" />
             </div>
         </section>
     );
