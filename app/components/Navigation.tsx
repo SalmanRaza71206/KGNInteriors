@@ -6,15 +6,25 @@ import Link from 'next/link';
 
 const navLinks = [
     { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
+    { name: 'Services', href: '#services', hasDropdown: true },
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
 ];
 
+const serviceItems = [
+    { name: 'Terrace Awnings', href: '#services' },
+    { name: 'Window Awnings', href: '#services' },
+    { name: 'Roller & Zebra Blinds', href: '#services' },
+    { name: 'Car Parking Shades', href: '#services' },
+    { name: 'Tensile Structures', href: '#services' },
+    { name: 'Drop Awnings', href: '#services' },
+];
+
 export default function Navigation() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isServicesOpen, setIsServicesOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -71,17 +81,89 @@ export default function Navigation() {
                     <div>
                         <nav className="hidden items-center gap-4 lg:flex lg:gap-6 lg:ml-2 ">
                             {navLinks.map((link, i) => (
-                                <motion.button
-                                    key={link.name}
-                                    initial={{ opacity: 0, y: -16 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
-                                    onClick={() => scrollToSection(link.href)}
-                                    className={`relative py-2 px-1 tracking-wider uppercase group text-sm font-semibold transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-foreground/85 hover:text-foreground' : 'text-white/90 hover:text-white'}`}
-                                >
-                                    {link.name}
-                                    <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
-                                </motion.button>
+                                link.hasDropdown ? (
+                                    <div
+                                        key={link.name}
+                                        className="relative"
+                                        onMouseEnter={() => setIsServicesOpen(true)}
+                                        onMouseLeave={() => setIsServicesOpen(false)}
+                                    >
+                                        <motion.button
+                                            initial={{ opacity: 0, y: -16 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
+                                            onClick={() => scrollToSection(link.href)}
+                                            className={`relative py-2 px-1 tracking-wider uppercase group text-sm font-semibold transition-colors duration-300 cursor-pointer flex items-center gap-1 ${isScrolled ? 'text-foreground/85 hover:text-foreground' : 'text-white/90 hover:text-white'}`}
+                                        >
+                                            {link.name}
+                                            <svg
+                                                className={`w-3 h-3 transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`}
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                            <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
+                                        </motion.button>
+
+                                        <AnimatePresence>
+                                            {isServicesOpen && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                                                    className="absolute top-full left-1/2 -translate-x-1/2 pt-3"
+                                                >
+                                                    <div className="min-w-[220px] rounded-xl border border-border/50 bg-background/95 backdrop-blur-xl shadow-2xl overflow-hidden">
+                                                        <div className="py-2">
+                                                            {serviceItems.map((service, idx) => (
+                                                                <motion.button
+                                                                    key={service.name}
+                                                                    initial={{ opacity: 0, x: -10 }}
+                                                                    animate={{ opacity: 1, x: 0 }}
+                                                                    transition={{ delay: idx * 0.05 }}
+                                                                    onClick={() => {
+                                                                        scrollToSection(service.href);
+                                                                        setIsServicesOpen(false);
+                                                                    }}
+                                                                    className="w-full px-4 py-2.5 text-left text-sm font-medium text-foreground/80 hover:text-accent hover:bg-accent/5 transition-all duration-200 flex items-center gap-3 group/item"
+                                                                >
+                                                                    <span className="w-1.5 h-1.5 rounded-full bg-accent/30 group-hover/item:bg-accent transition-colors duration-200" />
+                                                                    {service.name}
+                                                                </motion.button>
+                                                            ))}
+                                                        </div>
+                                                        <div className="border-t border-border/50 p-3">
+                                                            <button
+                                                                onClick={() => {
+                                                                    scrollToSection('#services');
+                                                                    setIsServicesOpen(false);
+                                                                }}
+                                                                className="w-full py-2 px-3 text-xs font-semibold uppercase tracking-wider text-accent hover:bg-accent/10 rounded-lg transition-colors duration-200"
+                                                            >
+                                                                View All Services →
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
+                                ) : (
+                                    <motion.button
+                                        key={link.name}
+                                        initial={{ opacity: 0, y: -16 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
+                                        onClick={() => scrollToSection(link.href)}
+                                        className={`relative py-2 px-1 tracking-wider uppercase group text-sm font-semibold transition-colors duration-300 cursor-pointer ${isScrolled ? 'text-foreground/85 hover:text-foreground' : 'text-white/90 hover:text-white'}`}
+                                    >
+                                        {link.name}
+                                        <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
+                                    </motion.button>
+                                )
                             ))}
                         </nav>
                     </div>
