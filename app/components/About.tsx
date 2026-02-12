@@ -1,8 +1,15 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import RevealOnScroll from './RevealOnScroll';
+
+const images = [
+    '/hero-awning.jpg',
+    '/service-pergola.webp',
+    '/drop-awning-Bh4vaVvq.jpg',
+    '/7e31007bc736071394c701f23d3c7c26.jpg',
+];
 
 function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
     const [count, setCount] = useState(0);
@@ -40,22 +47,117 @@ function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
 
 export default function About() {
     const sectionRef = useRef<HTMLDivElement>(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [direction, setDirection] = useState(0);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+    const startAutoPlay = () => {
+        intervalRef.current = setInterval(() => {
+            setDirection(1);
+            setCurrentIndex((prev) => (prev + 1) % images.length);
+        }, 5000);
+    };
+
+    const stopAutoPlay = () => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+    };
+
+    useEffect(() => {
+        startAutoPlay();
+        return () => stopAutoPlay();
+    }, []);
+
+    const handlePrev = () => {
+        stopAutoPlay();
+        setDirection(-1);
+        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+        startAutoPlay();
+    };
+
+    const handleNext = () => {
+        stopAutoPlay();
+        setDirection(1);
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+        startAutoPlay();
+    };
+
+    const variants = {
+        enter: (direction: number) => ({
+            x: direction > 0 ? 300 : -300,
+            opacity: 0,
+        }),
+        center: {
+            x: 0,
+            opacity: 1,
+        },
+        exit: (direction: number) => ({
+            x: direction < 0 ? 300 : -300,
+            opacity: 0,
+        }),
+    };
 
     return (
         <section id="about" ref={sectionRef} className="section">
             <div className="container">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                    {/* Left Column - Image */}
+                    {/* Left Column - Image Slider */}
                     <RevealOnScroll animation="slideLeft" className="relative">
-                        <div className="relative aspect-4/5 rounded-2xl overflow-hidden shadow-2xl">
-                            <div
-                                className="absolute inset-0 bg-cover bg-center"
-                                style={{
-                                    backgroundImage:
-                                        "url('')",
-                                }}
-                            />
-                            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+                        <div className="relative aspect-4/5 rounded-2xl overflow-hidden shadow-2xl group">
+                            <AnimatePresence mode="wait" custom={direction}>
+                                <motion.div
+                                    key={currentIndex}
+                                    custom={direction}
+                                    variants={variants}
+                                    initial="enter"
+                                    animate="center"
+                                    exit="exit"
+                                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                    className="absolute inset-0 bg-cover bg-center"
+                                    style={{
+                                        backgroundImage: `url('${images[currentIndex]}')`,
+                                    }}
+                                />
+                            </AnimatePresence>
+                            <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
+
+                            {/* Slider Navigation */}
+                            <div className="absolute inset-x-0 bottom-0 p-6 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={handlePrev}
+                                        className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-accent transition-colors duration-300"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        onClick={handleNext}
+                                        className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-accent transition-colors duration-300"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div className="flex gap-2">
+                                    {images.map((_, i) => (
+                                        <button
+                                            key={i}
+                                            onClick={() => {
+                                                stopAutoPlay();
+                                                setDirection(i > currentIndex ? 1 : -1);
+                                                setCurrentIndex(i);
+                                                startAutoPlay();
+                                            }}
+                                            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-4 bg-accent' : 'bg-white/50'}`}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
 
                             {/* Floating Badge */}
                             <motion.div
@@ -63,7 +165,7 @@ export default function About() {
                                 whileInView={{ scale: 1, opacity: 1 }}
                                 transition={{ delay: 0.5, duration: 0.5 }}
                                 viewport={{ once: true }}
-                                className="absolute bottom-8 right-8 w-32 h-32 bg-accent rounded-lg flex flex-col items-center justify-center text-white shadow-lg z-10"
+                                className="absolute bottom-12 right-12 w-28 h-28 bg-accent rounded-lg flex flex-col items-center justify-center text-white shadow-lg z-10"
                             >
                                 <span className="text-3xl font-display font-bold">15+</span>
                                 <span className="text-xs tracking-wider uppercase">Years Exp.</span>
