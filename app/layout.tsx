@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SocialSidebar from "./components/SocialSidebar";
 
 export const metadata: Metadata = {
   title: "KGN Interiors | Premium Awnings, Blinds & Interior Solutions",
@@ -27,6 +28,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
       </head>
       <body className="antialiased">
+        <SocialSidebar />
         {children}
       </body>
     </html>

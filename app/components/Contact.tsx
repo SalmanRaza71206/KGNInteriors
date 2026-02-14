@@ -6,12 +6,57 @@ import RevealOnScroll from './RevealOnScroll';
 
 export default function Contact() {
     const formRef = useRef<HTMLFormElement>(null);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        serviceType: '',
+        message: '',
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [focusedField, setFocusedField] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+
+        try {
+            const response = await fetch('/api/sendEmail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to send email');
+            }
+
+            const data = await response.json();
+            console.log('Email sent successfully:', data);
+
+            // Reset form
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                serviceType: '',
+                message: '',
+            });
+
+            alert('Thank you for your message! We will get back to you soon.');
+        } catch (error) {
+            console.error('Error sending email:', error);
+            alert('Failed to send email. Please try again later or contact us directly at [EMAIL_ADDRESS]');
+        } finally {
+            setIsSubmitting(false);
+        }
 
         // Simulate form submission
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -20,6 +65,7 @@ export default function Contact() {
         if (formRef.current) {
             formRef.current.reset();
         }
+
         alert('Thank you for your message! We will get back to you soon.');
     };
 
@@ -199,6 +245,8 @@ export default function Contact() {
                                         className={inputClasses('email')}
                                         onFocus={() => setFocusedField('email')}
                                         onBlur={() => setFocusedField(null)}
+                                        value={formData.email}
+                                        onChange={handleChange}
                                     />
                                 </div>
 
@@ -211,6 +259,8 @@ export default function Contact() {
                                         className={inputClasses('phone')}
                                         onFocus={() => setFocusedField('phone')}
                                         onBlur={() => setFocusedField(null)}
+                                        value={formData.phone}
+                                        onChange={handleChange}
                                     />
                                 </div>
 
@@ -221,12 +271,14 @@ export default function Contact() {
                                     </label>
                                     <select
                                         id="service"
-                                        name="service"
+                                        name="serviceType"
                                         required
-                                        className={`${inputClasses('service')} appearance-none cursor-pointer`}
-                                        onFocus={() => setFocusedField('service')}
+                                        className={`${inputClasses('serviceType')} appearance-none cursor-pointer`}
+                                        onFocus={() => setFocusedField('serviceType')}
                                         onBlur={() => setFocusedField(null)}
-                                        defaultValue=""
+                                        value={formData.serviceType}
+                                        onChange={handleChange}
+
                                     >
                                         <option value="" disabled>Select a Service</option>
                                         <option value="terrace-awnings">Terrace Awnings</option>
@@ -236,6 +288,7 @@ export default function Contact() {
                                         <option value="drop-awnings">Drop Awnings</option>
                                         <option value="interior-works">Interior Works</option>
                                         <option value="other">Other</option>
+
                                     </select>
                                     <svg
                                         className="absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground-muted pointer-events-none"
@@ -257,6 +310,8 @@ export default function Contact() {
                                         className={`${inputClasses('message')} resize-none`}
                                         onFocus={() => setFocusedField('message')}
                                         onBlur={() => setFocusedField(null)}
+                                        value={formData.message}
+                                        onChange={handleChange}
                                     />
                                 </div>
 
