@@ -5,10 +5,10 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import RevealOnScroll from './RevealOnScroll';
 
 const images = [
-    '/hero-awning.jpg',
-    '/service-pergola.webp',
-    '/drop-awning-Bh4vaVvq.jpg',
-    '/7e31007bc736071394c701f23d3c7c26.jpg',
+    '/slides/1.jpg',
+    '/slides/2.webp',
+    '/slides/3.jpg',
+    '/slides/4.jpg',
 ];
 
 function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
@@ -47,14 +47,21 @@ function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
 
 export default function About() {
     const sectionRef = useRef<HTMLDivElement>(null);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(1); // Start at 1 for infinite loop
     const [direction, setDirection] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(false);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+    const extendedImages = [
+        images[images.length - 1], // Last image at the start
+        ...images,
+        images[0], // First image at the end
+    ];
+
 
     const startAutoPlay = () => {
         intervalRef.current = setInterval(() => {
-            setDirection(1);
-            setCurrentIndex((prev) => (prev + 1) % images.length);
+            handleNext();
         }, 5000);
     };
 
@@ -70,33 +77,55 @@ export default function About() {
     }, []);
 
     const handlePrev = () => {
+        if (isTransitioning) return;
         stopAutoPlay();
+        setIsTransitioning(true);
         setDirection(-1);
-        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+        setCurrentIndex((prev) => prev - 1);
         startAutoPlay();
     };
 
     const handleNext = () => {
+        if (isTransitioning) return;
         stopAutoPlay();
+        setIsTransitioning(true);
         setDirection(1);
-        setCurrentIndex((prev) => (prev + 1) % images.length);
+        setCurrentIndex((prev) => prev + 1);
         startAutoPlay();
     };
+    // Handle infinite loop wrap-around
+    useEffect(() => {
+        if (!isTransitioning) return;
+
+        const timer = setTimeout(() => {
+            setIsTransitioning(false);
+            
+            // Jump to the real position without animation
+            if (currentIndex === 0) {
+                setCurrentIndex(images.length);
+            } else if (currentIndex === extendedImages.length - 1) {
+                setCurrentIndex(1);
+            }
+        }, 1000); // Match transition duration
+
+        return () => clearTimeout(timer);
+    }, [currentIndex, isTransitioning]);
 
     const variants = {
-        enter: (direction:number) => ({
+        enter: (direction: number) => ({
             x: direction > 0 ? '100%' : '-100%',
-            opacity: 0,
+            opacity: 1, // Keep opacity at 1 for seamless transition
         }),
         center: {
             x: 0,
             opacity: 1,
         },
-        exit: (direction:number) => ({
+        exit: (direction: number) => ({
             x: direction > 0 ? '-100%' : '100%',
-            opacity: 0,
+            opacity: 1, // Keep opacity at 1 for seamless transition
         }),
     };
+
 
     return (
         <section id="about" ref={sectionRef} className="section">
@@ -104,7 +133,7 @@ export default function About() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-start lg:items-center">
                     {/* Left Column - Image Slider */}
                     <RevealOnScroll animation="slideLeft" className="relative">
-                        <div className="relative aspect-4/3 sm:aspect-4/4 lg:aspect-4/5 rounded-2xl overflow-hidden shadow-2xl group">
+                        <div className="relative aspect-4/3 sm:aspect-4/4 lg:aspect-4/5 rounded-2xl overflow-hidden shadow-2xl group bg-black">
                             <AnimatePresence initial={false} custom={direction}>
                                 <motion.div
                                     key={currentIndex}
@@ -114,20 +143,21 @@ export default function About() {
                                     animate="center"
                                     exit="exit"
                                     transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                                    className="absolute inset-0 bg-cover bg-center"
+                                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                                     style={{
-                                        backgroundImage: `url('${images[currentIndex]}')`,
+                                        backgroundImage: `url('${extendedImages[currentIndex]}')`,
                                     }}
                                 />
                             </AnimatePresence>
-                            <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent pointer-events-none z-10" />
+
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none z-10" />
 
                             {/* Slider Navigation */}
-                            <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                            <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 flex items-center justify-between transition-opacity duration-300 z-50">
                                 <div className="flex gap-2">
                                     <button
                                         onClick={handlePrev}
-                                        className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-accent transition-colors duration-300"
+                                        className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-black/40 dark:bg-white/10 backdrop-blur-lg border border-white/30 flex items-center justify-center text-white hover:bg-accent hover:text-black transition-all duration-300 shadow-lg"
                                         aria-label="Previous image"
                                     >
                                         <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,7 +166,7 @@ export default function About() {
                                     </button>
                                     <button
                                         onClick={handleNext}
-                                        className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-accent transition-colors duration-300"
+                                        className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-black/40 dark:bg-white/10 backdrop-blur-lg border border-white/30 flex items-center justify-center text-white hover:bg-accent hover:text-black transition-all duration-300 shadow-lg"
                                         aria-label="Next image"
                                     >
                                         <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -150,12 +180,20 @@ export default function About() {
                                         <button
                                             key={i}
                                             onClick={() => {
+                                                if (isTransitioning) return;
                                                 stopAutoPlay();
-                                                setDirection(i > currentIndex ? 1 : -1);
-                                                setCurrentIndex(i);
+                                                setIsTransitioning(true);
+                                                setDirection(i + 1 > currentIndex ? 1 : -1);
+                                                setCurrentIndex(i + 1); // +1 because of extended array
                                                 startAutoPlay();
                                             }}
-                                            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-4 bg-accent' : 'bg-white/50'}`}
+                                            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                                                (currentIndex === 0 && i === images.length - 1) ||
+                                                (currentIndex === extendedImages.length - 1 && i === 0) ||
+                                                currentIndex === i + 1
+                                                    ? 'w-4 bg-accent'
+                                                    : 'bg-white/50'
+                                            }`}
                                             aria-label={`Go to image ${i + 1}`}
                                         />
                                     ))}

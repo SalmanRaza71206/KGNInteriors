@@ -78,7 +78,7 @@ export default function Contact() {
     return (
         <section id="contact" className="section bg-background-secondary">
             <div className="container">
-                <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+                <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 ">
                     {/* Left Column - Info */}
                     <div>
                         <RevealOnScroll>
@@ -99,7 +99,6 @@ export default function Contact() {
                                 and quote. Our team of experts is here to bring your vision to life.
                             </p>
                         </RevealOnScroll>
-
 
 
                         {/* Contact Info */}
@@ -159,7 +158,7 @@ export default function Contact() {
 
                         {/* Google Map */}
                         <RevealOnScroll delay={0.4}>
-                            <div className="mt-6 rounded-2xl overflow-hidden h-[250px] border border-border">
+                            <div className="mt-6 rounded-2xl overflow-hidden aspect-video border border-border">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995!3d19.0821978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1709400000000!5m2!1sen!2sin"
                                     width="100%"
@@ -181,7 +180,7 @@ export default function Contact() {
                             onSubmit={handleSubmit}
                             className="bg-background p-6 shadow-sm lg:p-8"
                         >
-                            <h3 className="mb-6 text-lg font-semibold text-foreground">Send Us a Message</h3>
+                            <h3 className="mb-6 text-lg font-semibold text-foreground">Get in touch</h3>
 
                             <div className="space-y-6">
                                 {/* Name */}
