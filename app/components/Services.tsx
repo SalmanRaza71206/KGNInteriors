@@ -15,7 +15,7 @@ const services = [
         id: 2,
         title: 'Window Awnings',
         description: 'Stylish window coverings that provide shade, reduce energy costs, and enhance your facade.',
-        image: 'https://res.cloudinary.com/dmtf3cng1/image/upload/v1770488361/ba21000f7d2f7cbdf09db5eb8c3ea6c2_gc8fwc.jpg',
+        image: 'https://i.pinimg.com/736x/f2/b1/80/f2b1804689a9b51b7c77f96808fe7562.jpg',
     },
     {
         id: 3,

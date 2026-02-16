@@ -190,7 +190,7 @@ export default function Navigation() {
                                 >
                                 📞
                                 </motion.span>
-                            <span className={`transition-colors duration-300 ${isScrolled ? 'text-foreground' : 'text-white'}`}>+91 98765 43210</span>
+                            <span className={`transition-colors duration-300 ${isScrolled ? 'text-foreground' : 'text-white'}`}>+91 97115 95758</span>
                         </a>
                         <button
                             onClick={() => scrollToSection('#contact')}
@@ -297,7 +297,7 @@ export default function Navigation() {
                                         className="flex items-center justify-center gap-2 rounded-none border border-border bg-background py-3 px-4 text-sm font-medium text-foreground"
                                     >
                                         <span>Call Us</span>
-                                        <span className="text-xs text-foreground-muted">+91 98765 43210</span>
+                                        <span className="text-xs text-foreground-muted">+91 97115 95758</span>
                                     </a>
                                     <button
                                         onClick={() => scrollToSection('#contact')}

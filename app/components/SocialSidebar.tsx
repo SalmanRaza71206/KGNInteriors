@@ -7,7 +7,7 @@ export default function SocialSidebar() {
         <div className="fixed left-0 top-1/2 -translate-y-1/2 z-50 flex flex-col">
             {/* Phone Option */}
             <motion.a
-                href="tel:+919876543210"
+                href="tel:+919711595758"
                 initial={{ x: -100, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
@@ -26,7 +26,7 @@ export default function SocialSidebar() {
 
             {/* WhatsApp Option */}
             <motion.a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/919711595758"
                 target="_blank"
                 rel="noreferrer noopener"
                 initial={{ x: -100, opacity: 0 }}
