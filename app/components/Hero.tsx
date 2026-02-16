@@ -94,10 +94,10 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="inline-flex items-center gap-2 w-fit px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
+                        className="inline-flex items-center gap-2 w-fit px-2 xs:px-4 py-1 xs:py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
                     >
                         <span className="w-2 h-2 rounded-full bg-[#d97745] animate-pulse" />
-                        <span className="text-xs font-medium tracking-widest uppercase text-white/90">Premium Shading Solutions</span>
+                        <span className="text-xs font-medium tracking-widest uppercase text-white/90 whitespace-nowrap text-nowrap">Premium Shading Solutions</span>
                     </motion.div>
 
                     {/* Main Headline */}
@@ -182,7 +182,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 1.1 }}
-                        className="flex items-center gap-4 text-sm text-white/60"
+                        className="flex items-center gap-4 text-sm text-white/60 flex-wrap"
                     >
                         <div className="flex items-center gap-2">
                             <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
@@ -192,13 +192,15 @@ export default function Hero() {
                                 href="https://wa.me/919711595758"
                                 target="_blank"
                                 rel="noreferrer noopener"
-                                className="font-medium text-white/80 hover:text-[#d97745] transition-colors"
+                                className="font-medium text-white/80 hover:text-[#d97745] transition-colors whitespace-nowrap text-nowrap"
                             >
                                 WhatsApp Us
                             </a>
                         </div>
-                        <span className="w-1 h-1 rounded-full bg-white/30" />
-                        <span>Mon–Sat, 9 AM – 7 PM</span>
+                        <div>
+                            <span className="w-1 h-1 inline-block align-middle mb-0.5 mr-3 rounded-full bg-white/90" />
+                            <span className='whitespace-nowrap text-nowrap'>Mon–Sat, 9 AM – 7 PM</span>
+                        </div>
                     </motion.div>
                 </div>
 
@@ -207,20 +209,20 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 1.2 }}
-                    className="mt-16 pt-8 border-t border-white/10"
+                    className="mt-8 md:mt-12 lg:mt-16 pt-6 md:pt-8 border-t border-white/10"
                 >
-                    <div className="flex flex-wrap gap-8 md:gap-16">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 lg:gap-12">
                         {[
                             { value: '15+', label: 'Years Experience' },
                             { value: '500+', label: 'Projects Done' },
                             { value: '98%', label: 'Satisfaction' },
                             { value: '50+', label: 'Expert Team' },
                         ].map((stat, i) => (
-                            <div key={i} className="hero-stat flex items-center gap-4">
-                                <div className="text-3xl md:text-4xl font-display font-bold text-white">
+                            <div key={i} className="hero-stat flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 md:gap-2 lg:gap-4">
+                                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white">
                                     {stat.value}
                                 </div>
-                                <div className="text-xs md:text-sm text-white/50 tracking-wide uppercase">
+                                <div className="text-xs sm:text-xs md:text-sm text-white/50 tracking-wide uppercase leading-tight">
                                     {stat.label}
                                 </div>
                             </div>
@@ -234,20 +236,20 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5, duration: 0.6 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-3 hidden md:flex flex-col items-center gap-2"
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 z-3 flex flex-col items-center gap-2"
             >
-                <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
+                <div className="w-5 h-8 md:w-6 md:h-10 rounded-full border-2 border-white/30 flex justify-center pt-1.5 md:pt-2">
                     <motion.div
-                        className="w-1 h-2 bg-[#d97745] rounded-full"
-                        animate={{ y: [0, 8, 0] }}
+                        className="w-1 h-1.5 md:h-2 bg-[#d97745] rounded-full"
+                        animate={{ y: [0, 6, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                     />
                 </div>
-                <span className="text-xs text-white/40 tracking-widest uppercase">Scroll</span>
+                <span className="text-[10px] md:text-xs text-white/40 tracking-widest uppercase">Scroll</span>
             </motion.div>
 
             {/* Decorative Accent Line */}
-            <div className="absolute bottom-0 left-12 h-40 z-3 flex items-end pointer-events-none">
+            <div className="absolute bottom-0 left-6 md:left-12 h-40 z-3 flex items-end pointer-events-none">
                 <div
                     className="hero-line w-px h-full bg-linear-to-t from-[#d97745] to-transparent"
                     style={{ transformOrigin: 'bottom' }}
