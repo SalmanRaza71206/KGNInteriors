@@ -11,7 +11,7 @@ const projects = [
         category: 'Terrace Awnings',
         description: 'Retractable awning system for luxury villa',
         image: 'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        video: 'https://www.youtube.com/shorts/EqSngOeiZT8?feature=share'
+        video: '1.mp4'
     },
     {
         id: 2,
@@ -19,7 +19,7 @@ const projects = [
         category: 'Roller Blinds',
         description: 'Automated zebra blinds for premium office space',
         image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        video: 'https://www.youtube.com/shorts/6qvZNEYlBJE?feature=share'
+        video: '2.mp4'
     },
     {
         id: 3,
@@ -27,7 +27,7 @@ const projects = [
         category: 'Car Parking',
         description: 'Custom tensile structure for residential complex',
         image: 'https://images.pexels.com/photos/8961000/pexels-photo-8961000.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        video: 'https://www.youtube.com/shorts/qu7Uyk2Kv7M?feature=share'
+        video: '3.mp4'
     },
     {
         id: 4,
@@ -35,7 +35,7 @@ const projects = [
         category: 'Drop Awnings',
         description: 'Privacy drop awnings for high-rise apartment',
         image: 'https://images.pexels.com/photos/602399/pexels-photo-602399.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        video: 'https://www.youtube.com/shorts/6V_4VzjNumg?feature=share'
+        video: '4.mp4'
     },
     {
         id: 5,
@@ -43,7 +43,7 @@ const projects = [
         category: 'Tensile Structures',
         description: 'Large scale tensile canopy for walkway',
         image: 'https://images.pexels.com/photos/209065/pexels-photo-209065.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        video: 'https://www.youtube.com/shorts/t1OVFeOBZv4?feature=share'
+        video: '5.mp4'
     },
     {
         id: 6,
@@ -51,7 +51,7 @@ const projects = [
         category: 'Window Awnings',
         description: 'Elegand window awnings for heritage property',
         image: 'https://images.pexels.com/photos/374815/pexels-photo-374815.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        video: 'https://www.youtube.com/shorts/75CVX7Y5wQo?feature=share'
+        video: '6.mp4'
     }
 ];
 
@@ -139,7 +139,7 @@ export default function Projects() {
                                         <div className="absolute inset-0 overflow-hidden">
                                             <iframe
                                                 src={embedUrl}
-                                                className="absolute top-1/2 left-1/2 min-h-[220%] min-w-[500%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                                                className="absolute top-1/2 left-1/2 min-h-[250%] min-w-[500%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                                                 allow="autoplay; encrypted-media; loop"
                                                 title={project.title}
                                                 style={{ border: 0 }}
@@ -147,7 +147,7 @@ export default function Projects() {
                                         </div>
                                     ) : project.video ? (
                                         <video
-                                            src={project.video}
+                                            src={"/video/" + project.video}
                                             autoPlay
                                             muted
                                             loop
@@ -162,10 +162,10 @@ export default function Projects() {
                                     )}
 
                                     {/* Overlay */}
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500 z-10" />
 
                                     {/* Content */}
-                                    <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                                    <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-end z-20">
                                         <motion.span
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
@@ -174,7 +174,7 @@ export default function Projects() {
                                             {project.category}
                                         </motion.span>
                                         <motion.h4
-                                            className="text-white text-xl font-semibold mb-1"
+                                            className="text-white text-lg md:text-xl font-semibold mb-1"
                                         >
                                             {project.title}
                                         </motion.h4>

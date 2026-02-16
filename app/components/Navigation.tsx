@@ -54,22 +54,22 @@ export default function Navigation() {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'glass py-3' : 'py-3'
-                    }`}
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled || isMobileMenuOpen ? 'glass py-3 bg-white/80 dark:bg-white/80' : 'py-3'
+                    } `}
             >
-                <div className="flex items-center justify-between gap-6 px-6 py-2 md:px-10 md:py-1 lg:px-14">
+                <div className="flex items-center justify-between gap-2 xs:gap-6 px-3 xs:px-6 py-2 md:px-10 md:py-1 xl:px-14">
                     {/* Brand + Desktop Navigation */}
                     <div className="flex items-center gap-6 md:gap-8">
                         {/* Brand */}
-                        <Link href="/" className="flex items-center gap-3 mr-4">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-accent text-sm font-display font-semibold text-white shadow-sm">
+                        <Link href="/" className="flex items-center gap-2 xs:gap-3 mr-4">
+                            <div className="flex shrink-0 h-8 w-8 xs:h-10 xs:w-10 items-center justify-center rounded-sm bg-accent text-sm font-display font-semibold text-white shadow-sm">
                                 K
                             </div>
-                            <div className="hidden flex-col leading-tight sm:flex">
-                                <span className={`text-sm font-display font-semibold tracking-tight transition-colors duration-300 ${isScrolled ? 'text-foreground' : 'text-white'}`}>
+                            <div className="flex-col leading-tight flex">
+                                <span className={`text-xs xs:text-sm font-display font-semibold tracking-tight transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'text-foreground' : 'text-white'}`}>
                                     KGN Awnings & Blinds
                                 </span>
-                                <span className={`text-[10px] font-medium uppercase tracking-[0.18em] transition-colors duration-300 ${isScrolled ? 'text-foreground-muted' : 'text-white/70'}`}>
+                                <span className={`text-[10px] font-medium uppercase tracking-[0.18em] transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'text-foreground-muted' : 'text-white/70'}`}>
                                     Shades • Tensile • Blinds
                                 </span>
                             </div>
@@ -79,7 +79,7 @@ export default function Navigation() {
                     </div>
 
                     <div>
-                        <nav className="hidden items-center gap-4 lg:flex lg:gap-6 lg:ml-2 ">
+                        <nav className="hidden items-center gap-4 lg:flex lg:ml-2 ">
                             {navLinks.map((link, i) => (
                                 link.hasDropdown ? (
                                     <div
@@ -173,7 +173,7 @@ export default function Navigation() {
                         initial={{ opacity: 0, x: 16 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4, duration: 0.4 }}
-                        className="hidden items-center gap-4 lg:flex lg:ml-6"
+                        className="hidden items-center gap-4 lg:gap-2 xl:gap-4 lg:flex "
                     >
                         <a
                             href="tel:+919876543210"
@@ -190,7 +190,7 @@ export default function Navigation() {
                                 >
                                 📞
                                 </motion.span>
-                            <span className={`transition-colors duration-300 ${isScrolled ? 'text-foreground' : 'text-white'}`}>+91 97115 95758</span>
+                            <span className={`transition-colors duration-300 whitespace-nowrap text-nowrap ${isScrolled ? 'text-foreground' : 'text-white'}`}>+91 97115 95758</span>
                         </a>
                         <button
                             onClick={() => scrollToSection('#contact')}
@@ -206,7 +206,7 @@ export default function Navigation() {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className={`relative flex h-10 w-10 items-center justify-center rounded-full border lg:hidden ml-4 transition-colors duration-300 ${isScrolled ? 'border-border bg-background/70' : 'border-white/20 bg-white/10'}`}
+                        className={`relative flex shrink-0 h-10 w-10 items-center justify-center rounded-full border lg:hidden ml-1 xs:ml-4 transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'border-border bg-background/70' : 'border-white/20 bg-white/10'}`}
                         aria-label="Toggle menu"
                     >
                         <div className="flex flex-col gap-1.5">
@@ -215,21 +215,21 @@ export default function Navigation() {
                                     rotate: isMobileMenuOpen ? 45 : 0,
                                     y: isMobileMenuOpen ? 6 : 0,
                                 }}
-                                className={`block h-0.5 w-5 origin-center transition-colors duration-300 ${isScrolled ? 'bg-foreground' : 'bg-white'}`}
+                                className={`block h-0.5 w-4 xs:w-5 origin-center transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'bg-foreground' : 'bg-white'}`}
                             />
                             <motion.span
                                 animate={{
                                     opacity: isMobileMenuOpen ? 0 : 1,
                                     x: isMobileMenuOpen ? 20 : 0,
                                 }}
-                                className={`block h-0.5 w-5 transition-colors duration-300 ${isScrolled ? 'bg-foreground' : 'bg-white'}`}
+                                className={`block h-0.5 w-4 xs:w-5 transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'bg-foreground' : 'bg-white'}`}
                             />
                             <motion.span
                                 animate={{
                                     rotate: isMobileMenuOpen ? -45 : 0,
                                     y: isMobileMenuOpen ? -6 : 0,
                                 }}
-                                className={`block h-0.5 w-5 origin-center transition-colors duration-300 ${isScrolled ? 'bg-foreground' : 'bg-white'}`}
+                                className={`block h-0.5 w-4 xs:w-5 origin-center transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'bg-foreground' : 'bg-white'}`}
                             />
                         </div>
                     </motion.button>
@@ -264,7 +264,7 @@ export default function Navigation() {
                                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                                 className="absolute right-0 top-0 bottom-0 flex w-full max-w-sm flex-col justify-center bg-background-secondary px-10 py-8"
                             >
-                                <div className="mb-8 mt-4">
+                                <div className="mb-8 mt-12">
                                     <p className="text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
                                         Menu
                                     </p>
