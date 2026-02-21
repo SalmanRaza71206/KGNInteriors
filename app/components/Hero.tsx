@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 
 const HERO_IMAGES = [
-    '/hero-awning.jpg',
-    '/drop-awning-Bh4vaVvq.jpg',
-    '/34144013ab7d113c4e037a0484e63501.jpg',
-    '/7e31007bc736071394c701f23d3c7c26.jpg',
+ 
+   'https://res.cloudinary.com/dzlvmbajq/image/upload/v1771670323/1_wjrsef.jpg',
+    'https://res.cloudinary.com/dzlvmbajq/image/upload/v1771670395/4_i2ybog.jpg',
     'https://i.pinimg.com/736x/c9/a5/d6/c9a5d6e5597375c48a300c333dae1167.jpg',
+    "https://res.cloudinary.com/dzlvmbajq/image/upload/v1771671562/windowAwning_zbdtz7.jpg"
 ];
 
 export default function Hero() {

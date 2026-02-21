@@ -9,7 +9,7 @@ const services = [
         id: 1,
         title: 'Terrace Awnings',
         description: 'Premium retractable awnings that transform your terrace into an elegant outdoor living space.',
-        image: 'https://res.cloudinary.com/dmtf3cng1/image/upload/v1770485277/7855f3a96250b8d2c2887b5c8f1b1574_lkacll.jpg',
+        image: 'https://res.cloudinary.com/dzlvmbajq/image/upload/v1771672764/head_dkhgzk.png',
     },
     {
         id: 2,
@@ -19,9 +19,10 @@ const services = [
     },
     {
         id: 3,
-        title: 'Roller & Zebra Blinds',
-        description: 'Modern blinds with precise light control and contemporary aesthetics for any interior.',
-        image: 'https://i.pinimg.com/736x/da/ce/3f/dace3fcae7c21f97608bc51ba6130a24.jpg',
+        title: 'Drop Awnings',
+        description: 'Vertical drop awnings perfect for balconies, patios, and commercial spaces.',
+        image: 'https://res.cloudinary.com/dmtf3cng1/image/upload/v1770495189/8870df577d397b311c2f7ae42fcb7def_ipibyv.jpg',
+       
     },
     {
         id: 4,
@@ -37,9 +38,10 @@ const services = [
     },
     {
         id: 6,
-        title: 'Drop Awnings',
-        description: 'Vertical drop awnings perfect for balconies, patios, and commercial spaces.',
-        image: 'https://res.cloudinary.com/dmtf3cng1/image/upload/v1770495189/8870df577d397b311c2f7ae42fcb7def_ipibyv.jpg',
+        title: 'Roller & Zebra Blinds',
+        description: 'Modern blinds with precise light control and contemporary aesthetics for any interior.',
+        image: 'https://i.pinimg.com/736x/da/ce/3f/dace3fcae7c21f97608bc51ba6130a24.jpg',
+    
     },
 ];
 
