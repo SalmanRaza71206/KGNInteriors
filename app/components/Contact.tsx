@@ -112,7 +112,7 @@ export default function Contact() {
                                         </svg>
                                     ),
                                     label: 'Visit Us',
-                                    value: '123 Design Street, Mumbai, India 400001',
+                                    value: 'RZ-3111,Gali No-35,Basement,Tughlakabad Extn,New Delhi-19,India',
                                 },
                                 {
                                     icon: (
@@ -160,7 +160,7 @@ export default function Contact() {
                         <RevealOnScroll delay={0.4}>
                             <div className="mt-6 rounded-2xl overflow-hidden aspect-video border border-border">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995!3d19.0821978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1709400000000!5m2!1sen!2sin"
+                                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3505.7347990586572!2d77.2530969754966!3d28.517625675727608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjjCsDMxJzAzLjUiTiA3N8KwMTUnMjAuNCJF!5e0!3m2!1sen!2sin!4v1771672457054!5m2!1sen!2sin"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0 }}
