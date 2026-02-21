@@ -6,8 +6,8 @@ import RevealOnScroll from './RevealOnScroll';
 
 const images = [
     '/slides/1.jpg',
-    '/slides/2.webp',
     '/slides/3.jpg',
+    'https://i.pinimg.com/736x/c9/a5/d6/c9a5d6e5597375c48a300c333dae1167.jpg',
     '/slides/4.jpg',
 ];
 
@@ -51,6 +51,7 @@ export default function About() {
     const [direction, setDirection] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const [isJumping, setIsJumping] = useState(false);
 
     const extendedImages = [
         images[images.length - 1], // Last image at the start
@@ -62,7 +63,7 @@ export default function About() {
     const startAutoPlay = () => {
         intervalRef.current = setInterval(() => {
             handleNext();
-        }, 5000);
+        }, 3000);
     };
 
     const stopAutoPlay = () => {
@@ -93,21 +94,27 @@ export default function About() {
         setCurrentIndex((prev) => prev + 1);
         startAutoPlay();
     };
+
+    // Reset jumping flag after jump renders
+    useEffect(() => {
+        if (isJumping) {
+            setIsJumping(false);
+        }
+    }, [currentIndex]);
+
     // Handle infinite loop wrap-around
     useEffect(() => {
         if (!isTransitioning) return;
-
         const timer = setTimeout(() => {
-            setIsTransitioning(false);
-            
-            // Jump to the real position without animation
             if (currentIndex === 0) {
-                setCurrentIndex(images.length);
+            setIsJumping(true);
+            setCurrentIndex(images.length);
             } else if (currentIndex === extendedImages.length - 1) {
-                setCurrentIndex(1);
+            setIsJumping(true);
+            setCurrentIndex(1);
             }
-        }, 1000); // Match transition duration
-
+            setIsTransitioning(false);
+        }, 1000);
         return () => clearTimeout(timer);
     }, [currentIndex, isTransitioning]);
 
@@ -134,15 +141,15 @@ export default function About() {
                     {/* Left Column - Image Slider */}
                     <RevealOnScroll animation="slideLeft" className="relative">
                         <div className="relative aspect-4/3 sm:aspect-4/4 lg:aspect-4/5 rounded-2xl overflow-hidden shadow-2xl group bg-black">
-                            <AnimatePresence initial={false} custom={direction}>
+                            <AnimatePresence initial={false} custom={direction} mode="popLayout">
                                 <motion.div
                                     key={currentIndex}
                                     custom={direction}
-                                    variants={variants}
-                                    initial="enter"
+                                    variants={isJumping ? {} : variants}  // No animation on jump
+                                    initial={isJumping ? false : 'enter'}
                                     animate="center"
-                                    exit="exit"
-                                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                                    exit={isJumping ? {} : 'exit'}
+                                    transition={isJumping ? { duration: 0 } : { duration: 1, ease: [0.22, 1, 0.36, 1] }}
                                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                                     style={{
                                         backgroundImage: `url('${extendedImages[currentIndex]}')`,
