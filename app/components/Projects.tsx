@@ -69,6 +69,16 @@ const projects = [
       "https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1200",
     video: "7.mp4",
   },
+  {
+  id: 8,
+  title: "Pergola Installation",
+  category: "Pergolas",
+  description:
+    "Elegant and durable pergola installation designed to enhance outdoor living spaces with style and shade",
+  image:
+    "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  video: "8.mp4",
+},
 ];
 
 const categories = [
