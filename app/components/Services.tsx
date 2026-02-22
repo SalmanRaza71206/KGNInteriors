@@ -21,7 +21,7 @@ const services = [
         id: 3,
         title: 'Drop Awnings',
         description: 'Vertical drop awnings perfect for balconies, patios, and commercial spaces.',
-        image: 'https://res.cloudinary.com/dmtf3cng1/image/upload/v1770495189/8870df577d397b311c2f7ae42fcb7def_ipibyv.jpg',
+        image: 'https://res.cloudinary.com/dzlvmbajq/image/upload/v1771752656/WhatsApp_Image_2026-02-21_at_18.54.16_ligaif.jpg',
        
     },
     {
