@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import SocialSidebar from "./components/SocialSidebar";
 
@@ -31,6 +32,15 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
       </head>
       <body className="antialiased">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=AW-17984735834" strategy="afterInteractive" />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17984735834');
+          `}
+        </Script>
         <SocialSidebar />
         {children}
       </body>

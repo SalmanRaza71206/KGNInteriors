@@ -26,7 +26,7 @@ export default function SocialSidebar() {
 
             {/* WhatsApp Option */}
             <motion.a
-                href="https://wa.me/919711595758"
+                href="https://wa.me/919711595758?text=Hi%2C%20I%E2%80%99m%20interested%20in%20your%20awnings%2Fblinds%20services.%20Please%20share%20details%20and%20pricing%20for%20installation."
                 target="_blank"
                 rel="noreferrer noopener"
                 initial={{ x: -100, opacity: 0 }}

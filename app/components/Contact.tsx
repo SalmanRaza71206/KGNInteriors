@@ -130,7 +130,7 @@ export default function Contact() {
                                         </svg>
                                     ),
                                     label: 'Email Us',
-                                    value: 'info@kgninteriors.com',
+                                    value: 'kgnislamsaifi@gmail.com',
                                 },
                                 {
                                     icon: (
