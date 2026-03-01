@@ -138,8 +138,8 @@ export default function Contact() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     ),
-                                    label: 'Working Hours',
-                                    value: 'Mon - Sat: 9:00 AM - 7:00 PM',
+                                   label: 'Working Hours',
+                                        value: 'Open 24 × 7 | All Days',
                                 },
                             ].map((item, i) => (
                                 <RevealOnScroll key={i} delay={0.3 + i * 0.1}>
