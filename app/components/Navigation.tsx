@@ -176,7 +176,14 @@ export default function Navigation() {
                         className="hidden items-center gap-4 lg:gap-2 xl:gap-4 lg:flex "
                     >
                         <a
-                            href="tel:+919876543210"
+                            href="tel:+919711595758"
+                            onClick={() => {
+                                if (typeof window !== 'undefined' && window.gtag) {
+                                    window.gtag('event', 'conversion', {
+                                        'send_to': 'AW-17984735834/TBr9COziu4wcENqU5f9C'
+                                    });
+                                }
+                            }}
                             className={`inline-flex items-center gap-2 py-2 pl-2 pr-3 text-xs font-medium uppercase tracking-[0.16em] transition-colors duration-300 ${isScrolled ? 'text-foreground-muted hover:text-foreground' : 'text-white/70 hover:text-white'}`}
                         >
                           <motion.span
@@ -293,7 +300,14 @@ export default function Navigation() {
                                     className="mt-10 flex flex-col gap-3"
                                 >
                                     <a
-                                        href="tel:+919876543210"
+                                        href="tel:+919711595758"
+                                        onClick={() => {
+                                            if (typeof window !== 'undefined' && window.gtag) {
+                                                window.gtag('event', 'conversion', {
+                                                    'send_to': 'AW-17984735834/TBr9COziu4wcENqU5f9C'
+                                                });
+                                            }
+                                        }}
                                         className="flex items-center justify-center gap-2 rounded-none border border-border bg-background py-3 px-4 text-sm font-medium text-foreground"
                                     >
                                         <span>Call Us</span>

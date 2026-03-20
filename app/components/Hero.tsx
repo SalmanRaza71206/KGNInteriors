@@ -168,6 +168,13 @@ export default function Hero() {
                         </button>
                         <a
                             href="tel:+91 9711595758"
+                            onClick={() => {
+                                if (typeof window !== 'undefined' && window.gtag) {
+                                    window.gtag('event', 'conversion', {
+                                        'send_to': 'AW-17984735834/TBr9COziu4wcENqU5f9C'
+                                    });
+                                }
+                            }}
                             className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-md text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,6 +199,13 @@ export default function Hero() {
                                 href="https://wa.me/919711595758"
                                 target="_blank"
                                 rel="noreferrer noopener"
+                                onClick={() => {
+                                    if (typeof window !== 'undefined' && window.gtag) {
+                                        window.gtag('event', 'conversion', {
+                                            'send_to': 'AW-17984735834/TBr9COziu4wcENqU5f9C'
+                                        });
+                                    }
+                                }}
                                 className="font-medium text-white/80 hover:text-[#d97745] transition-colors whitespace-nowrap text-nowrap"
                             >
                                 WhatsApp Us

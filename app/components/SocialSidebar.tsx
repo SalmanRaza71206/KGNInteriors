@@ -8,6 +8,13 @@ export default function SocialSidebar() {
             {/* Phone Option */}
             <motion.a
                 href="tel:+919711595758"
+                onClick={() => {
+                    if (typeof window !== 'undefined' && window.gtag) {
+                        window.gtag('event', 'conversion', {
+                            'send_to': 'AW-17984735834/TBr9COziu4wcENqU5f9C'
+                        });
+                    }
+                }}
                 initial={{ x: -100, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
@@ -29,9 +36,17 @@ export default function SocialSidebar() {
                 href="https://wa.me/919711595758?text=Hi%2C%20I%E2%80%99m%20interested%20in%20your%20awnings%2Fblinds%20services.%20Please%20share%20details%20and%20pricing%20for%20installation."
                 target="_blank"
                 rel="noreferrer noopener"
+                onClick={() => {
+                    if (typeof window !== "undefined" && window.gtag) {
+                        window.gtag('event', 'conversion', {
+                            'send_to': 'AW-17984735834/TBr9COziu4wcENqU5f9C'
+                        });
+                    }
+                }}
                 initial={{ x: -100, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
+
                 className="group flex items-center"
                 aria-label="Chat on WhatsApp"
             >
